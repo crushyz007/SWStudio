@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    <div id="maincontainer"></div>
+    <script>
+        br = document.createElement("br");
+        //topic
+        const topic = document.createElement("h1");
+        topic.innerText = "Exercise 04: JavaScript&DOM";
+        document.getElementById("maincontainer").appendChild(topic);
+
+        //btn
+        let worker = new Worker("webWorker.js");
+
+        const btn = document.createElement("button");
+        btn.innerText = "Click me to display Date and Time";
+        document.getElementById("maincontainer").appendChild(btn);
+        btn_state= true;
+        btn.onclick = function () {
+            
+            //btn position
+            if (btn_state == true){
+                btn.style.position = "fixed";
+                btn.style.top = "0px";
+                btn.style.right = "0px";
+                btn_state=false;
+                btn.innerHTML = new Date()
+                // btn.style.sticky = "top";
+            }
+            else{
+                btn.style.position = "fixed";
+                btn.style.top = "";
+                btn.style.right = "";
+                btn_state=true;
+            }
+            // btn.innerText = new Date();
+        };
+
+        //Time & Change Color
+        setInterval(function () {
+            if (btn_state == false){
+                btn.innerHTML = new Date()
+                worker.postMessage('test');
+
+                worker.onmessage = function (event) {
+                    btn.style.backgroundColor = event.data.bgColor;
+                    btn.style.color = event.data.fontColor;
+                }
+            }
+        }, 1000);
+
+        document.getElementById("maincontainer").appendChild(br);
+
+        //personal info
+        const box = document.createElement("div"); //box for personal info
+        box.id = "box";
+        document.getElementById("maincontainer").appendChild(box);
+
+        const personal = document.createElement("u");
+        personal.innerText = "Personal Info";
+        document.getElementById("box").appendChild(personal);
+        personal.style.color = "pink";
+        personal.onmouseover = function () {
+            personal.style.background = "yellow";
+            personal.style.color = "black";
+        };
+        personal.onmouseout = function () {
+            personal.style.background = "";
+            personal.style.color = "pink";
+        };
+
+        let click = false;
+        const name = document.createElement("li");
+        name.innerText = "Nattawadee Tinnapoom, ID 63010339";
+        const subject = document.createElement("li");
+        subject.innerText = "Subject: Software Studio";
+        const semester = document.createElement("li");
+        semester.innerText = "Semester: 1/2023";
+
+        personal.onclick = function () {
+            if (click == false) {
+                click = true;
+                document.getElementById("box").appendChild(name);
+                name.style.marginLeft = "20px";
+                document.getElementById("box").appendChild(subject);
+                subject.style.marginLeft = "20px";
+                document.getElementById("box").appendChild(semester);
+                semester.style.marginLeft = "20px";
+            }
+
+            else {
+                click = false;
+                document.getElementById("box").removeChild(name);
+                document.getElementById("box").removeChild(subject);
+                document.getElementById("box").removeChild(semester);
+            }
+        };
+
+        //Snapshots
+        const snapshotspic = {
+            "Fireworks": "https://images.unsplash.com/photo-1499233983070-99a5f004e720?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80",
+            "Crest": "https://images.unsplash.com/photo-1515655371474-253e8d8a575a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80",
+            "Action": "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80",
+            "Buffalo": "https://images.unsplash.com/photo-1575414914265-ebc9aa2637f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80",
+        }
+        const snapshots = document.createElement("h1");
+        snapshots.innerText = "Snapshots";
+        document.getElementById("maincontainer").appendChild(snapshots);
+
+        const snapshotsBox = document.createElement("div"); //box for personal info
+        snapshotsBox.id = "snapshotsBox";
+        document.getElementById("maincontainer").appendChild(snapshotsBox);
+
+        const ul = document.createElement("ul");
+        const img = document.createElement("img");
+        //default picture
+        img.src = "https://s.isanook.com/jo/0/ud/492/2463517/newjeans-asap.jpg"; 
+        img.width = "700";
+        document.getElementById("maincontainer").appendChild(img);
+
+        //li picture
+        for (const [key,value] of Object.entries(snapshotspic)) {
+            const snap_li = document.createElement("li");
+            const snap_a = document.createElement("a");
+
+            snap_a.innerText = key;
+            snap_a.setAttribute("id", key);
+            snap_a.href = "#snapshot";
+            snap_a.onclick = function () {
+                img.src = snapshotspic[key];
+                img.width = "700";
+            };
+            snap_li.appendChild(snap_a);
+            ul.appendChild(snap_li);
+            };
+        snapshotsBox.appendChild(ul);
+        snapshotsBox.appendChild(img);
+        
+    </script>
+</body>
+
+</html>
