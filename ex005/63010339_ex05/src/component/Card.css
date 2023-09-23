@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Mitr&display=swap');
+.Box{
+    background-color: antiquewhite;
+    width: 100%;
+    max-width: 900px;
+    border: 3px solid black;
+    border-radius: 20px;
+    padding-bottom: 20px;
+    display: grid;
+    grid-template-rows: 5fr 1fr;
+    justify-items: space-between;
+}
+
+.CardBox{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 25px 25px 25px 25px;
+}
+.descriptionBox{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.FoodName{
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.CategoryName{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.FoodInfo{
+    font-size: 18px;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+.BtnPos{
+    
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+button{
+    min-height: 40px;
+}
+.ScoreBox{
+    width: auto;
+    height: 40px;
+    padding: 10px 10px 10px 10px;
+    background-color: chartreuse;
+    border: 3px solid black;
+    border-radius: 10px ;
+    font-size: 25px;
+    font-weight: bold;
+    color:rgb(215, 62, 215);
+    display: flex;
+    align-items: center;
+    font-family: 'Mitr', sans-serif;
+}
