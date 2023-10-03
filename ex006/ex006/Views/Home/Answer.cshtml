@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div>
+    <fieldset>
+        <legend><i>Contact Information</i></legend>
+        First name: @ViewBag.fname <br />
+        Last name: @ViewBag.lname<br />
+        Email: @ViewBag.email <br /></fieldset>
+
+    <fieldset>
+        <legend><i>Competition Question</i></legend> 
+        How tall is the Eiffel Tower in Pasrism France?<br />
+        @ViewBag.ans
+        <br />
+    </fieldset>
+
+    <fieldset>
+        <legend><i>Tiebreaker Question</i></legend>
+    In 25 words or less, say why you would like to win $10,000: <br />
+    @ViewBag.textarea <br />
+    </fieldset>
+
+</div>
